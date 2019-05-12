@@ -29,14 +29,17 @@ BOOL main( int arg_number, char* arguments[] )
 			throw std::exception( "Failed to open output file" );
 
 		out << "static std::array<byte, " << bytes.size() << "> arr = " << std::endl <<
-			"{";
+			"{" << "\t";
 
 		/// Go through all stored bytes and print them
 		for ( auto i = 0u; i < bytes.size(); i++ )
 		{
 			/// New line after 16 bytes represented
 			if ( i % 16 == 0 )
+			{
 				out << std::endl;
+				out << "\t";
+			}
 
 			out << std::showbase << std::hex << static_cast< int16_t >( bytes.at( i ) ) << ", ";
 		}
